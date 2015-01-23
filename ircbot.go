@@ -21,7 +21,7 @@ type Bot struct{
 func NewBot() *Bot {
         return &Bot{server: "irc.freenode.net",
                     port: "6667",
-                    nick: "teeheeBot",
+                    nick: "teeheeBot-breakin",
                     channel: "#osdg-iiith",
                     pass: "",
                     conn: nil,
@@ -37,8 +37,8 @@ func (bot *Bot) Connect() (conn net.Conn, err error){
   return bot.conn, nil
 }
 
-func (bot *Bot) WriteMessage(message string){
-  fmt.Fprintf(bot.conn, "PRIVMSG %s :%s\r\n", bot.channel, message)
+func (bot *Bot) WriteMessage(message string, name string){
+  fmt.Fprintf(bot.conn, "PRIVMSG %s :%s\r\n", name, message)
 }
 func (bot *Bot) Pong(server string){
   fmt.Fprintf(bot.conn, "PONG %s\r\n", server)
@@ -52,19 +52,20 @@ func (bot *Bot) EvaluateLine(line string){
     if strings.HasPrefix(splitUp[2], "!teehee ") {
       flags := strings.Split(splitUp[2], " ")
       if flags[1] == "help" {
-        bot.WriteMessage(name[0]+": TEEHEEBOT : written in Golang.")
-        bot.WriteMessage(name[0]+": Current Functions: help, about")
-        bot.WriteMessage(name[0]+": USAGE: '!teehee <function> [flags]'") 
+        bot.WriteMessage("TEEHEEBOT : written in Golang.", name[0])
+        bot.WriteMessage("Current Functions: help, about", name[0])
+        bot.WriteMessage("USAGE: '!teehee <function> [flags]'", name[0]) 
       } else if flags[1] == "about" {
-        bot.WriteMessage(name[0]+": Open Source Developers Group @ IIIT - H")
-        bot.WriteMessage(name[0]+": Mailing List : https://groups.google.com/forum/?fromgroups#!forum/iiit-osdg")
-	bot.WriteMessage(name[0]+": Blog : http://iiitosdg.wordpress.com/")
-        bot.WriteMessage(name[0]+": IRC : Well, you guys are already here aren't you :P")
-        bot.WriteMessage(name[0]+": GitHub : https://github.com/OSDG-IIITH/")
-        bot.WriteMessage(name[0]+": Want to get a project forked under the github group? Register it at http://osdg.iiit.ac.in/github/")
-        bot.WriteMessage(name[0]+": Doing GSoC this summer? Check out http://osdg.iiit.ac.in/gsoc15/") 
+        // bot.WriteMessage(name[0]+": Open Source Developers Group @ IIIT - H")
+        // bot.WriteMessage(name[0]+": Mailing List : https://groups.google.com/forum/?fromgroups#!forum/iiit-osdg")
+	    // bot.WriteMessage(name[0]+": Blog : http://iiitosdg.wordpress.com/")
+        // bot.WriteMessage(name[0]+": IRC : Well, you guys are already here aren't you :P")
+        // bot.WriteMessage(name[0]+": GitHub : https://github.com/OSDG-IIITH/")
+        // bot.WriteMessage(name[0]+": Want to get a project forked under the github group? Register it at http://osdg.iiit.ac.in/github/")
+        // bot.WriteMessage(name[0]+": Doing GSoC this summer? Check out http://osdg.iiit.ac.in/gsoc15/") 
+        bot.WriteMessage("This is where all the magic happens ;)", name[0])
       } else { 
-        bot.WriteMessage(name[0]+": I didn't get that, try '!teehee help' ??")
+        bot.WriteMessage("I didn't get that, try '!teehee help' ??", name[0])
       }
       // INLINE GUIDES BE THE SHIZZ
       // Adding functionality, use the template suggested below.
@@ -73,7 +74,7 @@ func (bot *Bot) EvaluateLine(line string){
       // }
     } else if strings.Contains(splitUp[2], "teeheeBot") {
        if strings.Contains(splitUp[1], "PRIVMSG") {
-         bot.WriteMessage(name[0]+": Use '!teehee help' to get help!");
+         bot.WriteMessage("Use '!teehee help' to get help!", name[0]);
         }
       }
   }
