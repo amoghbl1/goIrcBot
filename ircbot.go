@@ -72,7 +72,9 @@ func (bot *Bot) EvaluateLine(line string){
       // Do some stuff
       // }
     } else if strings.Contains(splitUp[2], "teeheeBot") {
-       bot.WriteMessage(name[0]+": Use '!teehee help' to get help!");
+       if strings.Contains(splitUp[1], "PRIVMSG") {
+         bot.WriteMessage(name[0]+": Use '!teehee help' to get help!");
+        }
       }
   }
   if strings.HasPrefix(splitUp[0], "PING") {
