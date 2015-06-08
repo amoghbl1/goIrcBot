@@ -41,7 +41,7 @@ func (bot *Bot) WriteMessage(message string){
   fmt.Fprintf(bot.conn, "PRIVMSG %s :%s\r\n", bot.channel, message)
 }
 func (bot *Bot) Pong(server string){
-  fmt.Fprintf(bot.conn, "PONG %s", server)
+  fmt.Fprintf(bot.conn, "PONG %s\r\n", server)
   fmt.Printf("PONG %s", server)
 }
 func (bot *Bot) EvaluateLine(line string){
@@ -64,14 +64,16 @@ func (bot *Bot) EvaluateLine(line string){
         bot.WriteMessage(name[0]+": Want to get a project forked under the github group? Register it at http://osdg.iiit.ac.in/github/")
         bot.WriteMessage(name[0]+": Doing GSoC this summer? Check out http://osdg.iiit.ac.in/gsoc15/") 
       } else { 
-      bot.WriteMessage(name[0]+": I didn't get that, try '!teehee help' ??")
+        bot.WriteMessage(name[0]+": I didn't get that, try '!teehee help' ??")
       }
       // INLINE GUIDES BE THE SHIZZ
       // Adding functionality, use the template suggested below.
       // else if flags[1] == "foobar" {
       // Do some stuff
       // }
-    }
+    } else if strings.Contains(splitUp[2], "teeheeBot") {
+       bot.WriteMessage(name[0]+": Use '!teehee help' to get help!");
+      }
   }
   if strings.HasPrefix(splitUp[0], "PING") {
     bot.Pong(splitUp[1])
