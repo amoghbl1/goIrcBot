@@ -55,26 +55,23 @@ func (bot *Bot) EvaluateLine(line string){
         bot.WriteMessage(name[0]+": TEEHEEBOT : written in Golang.")
         bot.WriteMessage(name[0]+": Current Functions: help, about")
         bot.WriteMessage(name[0]+": USAGE: '!teehee <function> [flags]'") 
-      }
-      if flags[1] == "about" {
+      } else if flags[1] == "about" {
         bot.WriteMessage(name[0]+": Open Source Developers Group @ IIIT - H")
         bot.WriteMessage(name[0]+": Mailing List : https://groups.google.com/forum/?fromgroups#!forum/iiit-osdg")
 	bot.WriteMessage(name[0]+": Blog : http://iiitosdg.wordpress.com/")
         bot.WriteMessage(name[0]+": IRC : Well, you guys are already here aren't you :P")
         bot.WriteMessage(name[0]+": GitHub : https://github.com/OSDG-IIITH/")
-        bot.WriteMessage(name[0]+": Wanna get a project forked under the github group? Register it at http://osdg.iiit.ac.in/github/")
+        bot.WriteMessage(name[0]+": Want to get a project forked under the github group? Register it at http://osdg.iiit.ac.in/github/")
         bot.WriteMessage(name[0]+": Doing GSoC this summer? Check out http://osdg.iiit.ac.in/gsoc15/") 
+      } else { 
+      bot.WriteMessage(name[0]+": I didn't get that, try '!teehee help' ??")
       }
       // INLINE GUIDES BE THE SHIZZ
       // Adding functionality, use the template suggested below.
-      // if flags[1] == "foobar" {
+      // else if flags[1] == "foobar" {
       // Do some stuff
       // }
-      else { 
-      bot.WriteMessage(name[0]+": I didn't get that, try '!teehee help' ??")
-      }
     }
-    
   }
   if strings.HasPrefix(splitUp[0], "PING") {
     bot.Pong(splitUp[1])
