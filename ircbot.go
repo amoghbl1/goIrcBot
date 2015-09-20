@@ -102,3 +102,6 @@ func main(){
         ircbot.EvaluateLine(line)
     }
 }
+
+// Sorry I got to this so late, I've explained most things to you :P
+// Genius is a bit much, don't you think :P
