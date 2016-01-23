@@ -64,7 +64,8 @@ func (bot *Bot) EvaluateLine(line string){
         // bot.WriteMessage(name[0]+": Want to get a project forked under the github group? Register it at http://osdg.iiit.ac.in/github/")
         // bot.WriteMessage(name[0]+": Doing GSoC this summer? Check out http://osdg.iiit.ac.in/gsoc15/") 
         bot.WriteMessage("This is where all the magic happens ;)", name[0])
-      } else { 
+      } else if flags[1] == "breakInEnter" {
+      } else {
         bot.WriteMessage("I didn't get that, try '!teehee help' ??", name[0])
       }
       // INLINE GUIDES BE THE SHIZZ
