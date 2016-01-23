@@ -71,7 +71,6 @@ func (bot *Bot) EvaluateLine(line string){
       } else if strings.Contains(mymsg, "knock") || strings.Contains(mymsg, "Knock"){
         bot.WriteMessage("Who's there??", name[0])
       } else if flags[1] == "breakInEnter" {
-        bot.WriteMessage("sugarHowYouGetSoFlyyy", name[0])
       } else {
         bot.WriteMessage("I didn't get that, try '!teehee help' ??", name[0])
       }
